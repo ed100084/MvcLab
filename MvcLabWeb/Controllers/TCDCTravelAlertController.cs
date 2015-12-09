@@ -83,6 +83,32 @@ namespace MvcLabWeb.Controllers
             return securityLevelList;
         }
 
+        private async Task<List<string>> GetAreaDescs()
+        {
+            var source = await this.GetTravelAlertData();
+            if (source != null)
+            {
+                var areaDescs = source.OrderBy(x => x.areaDesc)
+                                            .Select(x => x.areaDesc)
+                                            .Distinct();
+                return areaDescs.ToList();
+            }
+            return new List<string>();
+        }
+        private async Task<IEnumerable<SelectListItem>> AreaDescSelectList(string areaDescs)
+        {
+            var areaDescSource = await this.GetAreaDescs();
+            var areaDescSelectList = areaDescSource.Select(item => new SelectListItem()
+            {
+                Text = item,
+                Value = item,
+                Selected = !string.IsNullOrWhiteSpace(areaDescs)
+                        && item.Equals(areaDescs, StringComparison.OrdinalIgnoreCase)
+            });
+            return areaDescSelectList;
+        }
+
+
         //public async Task<ActionResult> Index(string securityLevels)
         //{
         //    ViewBag.SecurityLevels = await this.SecurityLevelSelectList(securityLevels);
@@ -98,10 +124,14 @@ namespace MvcLabWeb.Controllers
         //    return View(source.OrderBy(x => x.severity_level).ToList());
         //}
 
-        public async Task<ActionResult> Index(string securityLevels, int page = 1)
+        public async Task<ActionResult> Index(string securityLevels, string areaDescs,int page = 1)
         {
             ViewBag.SecurityLevels = await this.SecurityLevelSelectList(securityLevels);
             ViewBag.SelectedSecurityLevel = securityLevels;
+
+            ViewBag.AreaDescs = await this.AreaDescSelectList(areaDescs);
+            ViewBag.SelectedAreaDesc = areaDescs;
+
             int currentPage = page < 1 ? 1 : page;
             var source = await this.GetTravelAlertData();
 
@@ -111,6 +141,11 @@ namespace MvcLabWeb.Controllers
             {
                 source = source.Where(x => x.severity_level == securityLevels);
             }
+            if (!string.IsNullOrWhiteSpace(areaDescs))
+            {
+                source = source.Where(x => x.areaDesc == areaDescs);
+            }
+
             return View(source.OrderByDescending(x => x.severity_level).ToPagedList(currentPage, pageSize));
         
         

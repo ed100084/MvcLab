@@ -10,10 +10,16 @@
 
     <div class="row well">
         <form class="form" role="form">
-            <div class="col-lg-8">
+            <div class="col-lg-4">
                 <div class="input-group">
                     <span class="input-group-addon">嚴重程度</span>
                     @Html.DropDownList("SecurityLevels", null, "All", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <span class="input-group-addon">區域</span>
+                    @Html.DropDownList("AreaDescs", null, "All", new { @class = "form-control" })
                 </div>
             </div>
             <div class="col-lg-4">
