@@ -15,10 +15,10 @@ namespace MvcLabWeb.Models
         [Display(Name = "來源簡述")]
         public string source { get; set; }
 
-        [Display(Name = "有效日期與時間")]
+        [Display(Name = "有效日期")]
         public DateTime effective { get; set; }
 
-        [Display(Name = "到期日期與時間")]
+        [Display(Name = "到期日期")]
         public DateTime expires { get; set; }
 
         [Display(Name = "發送者名稱")]
@@ -30,10 +30,10 @@ namespace MvcLabWeb.Models
         [Display(Name = "描述")]
         public string description { get; set; }
 
-        [Display(Name = "描述建議採取應變方案")]
+        [Display(Name = "應變方案")]
         public string instruction { get; set; }
 
-        [Display(Name = "其他資訊連結")]
+        [Display(Name = "連結")]
         public string web { get; set; }
 
         [Display(Name = "警示標題")]
@@ -51,10 +51,10 @@ namespace MvcLabWeb.Models
         [Display(Name = "英文區域描述")]
         public string areaDesc_EN { get; set; }
 
-        [Display(Name = "中心點座標及半徑")]
+        [Display(Name = "位置")]
         public string circle { get; set; }
 
-        [Display(Name = "國家或地區標準代碼")]
+        [Display(Name = "國家代碼")]
         public string ISO3166 { get; set; }
 
         [Display(Name = "省市")]
