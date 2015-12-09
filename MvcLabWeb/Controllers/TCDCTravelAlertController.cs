@@ -26,7 +26,7 @@ namespace MvcLabWeb.Controllers
         private async Task<IEnumerable<TravelAlert>> GetTravelAlertData()
         {
             string cacheName = "TRAVEL_ALERT";
-            string test="test1";
+            string test="test111";
             ObjectCache cache = MemoryCache.Default;
             CacheItem cacheContents = cache.GetCacheItem(cacheName);
 
