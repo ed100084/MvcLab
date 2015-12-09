@@ -26,7 +26,7 @@ namespace MvcLabWeb.Controllers
         private async Task<IEnumerable<TravelAlert>> GetTravelAlertData()
         {
             string cacheName = "TRAVEL_ALERT";
-            string test="test111";
+            
             ObjectCache cache = MemoryCache.Default;
             CacheItem cacheContents = cache.GetCacheItem(cacheName);
 
@@ -111,7 +111,7 @@ namespace MvcLabWeb.Controllers
             {
                 source = source.Where(x => x.severity_level == securityLevels);
             }
-            return View(source.OrderBy(x => x.severity_level).ToPagedList(currentPage, pageSize));
+            return View(source.OrderByDescending(x => x.severity_level).ToPagedList(currentPage, pageSize));
         
         
         }

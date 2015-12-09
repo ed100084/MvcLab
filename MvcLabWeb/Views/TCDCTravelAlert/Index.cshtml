@@ -30,14 +30,12 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().sent)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().alert_disease)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().effective)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().areaDesc)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().expires)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().headline)
             </th>
@@ -50,19 +48,22 @@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().web)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().alert_disease)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().areaDesc)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().areaDesc_EN)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().circle)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().sent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().effective)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().expires)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -70,15 +71,12 @@
             {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.sent)
+                    @Html.DisplayFor(modelItem => item.alert_disease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.areaDesc)
                 </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.effective)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.expires)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.headline)
                 </td>
@@ -91,19 +89,23 @@
                 <td>
                     <a href="@Html.DisplayFor(modelItem => item.web)">link</a>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.alert_disease)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.areaDesc)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.areaDesc_EN)
                 </td>
                 <td>
                     <a href="https://maps.google.com/?q=@Html.DisplayFor(modelItem => item.circle)">Google Map</a>
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sent)
+                </td>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.effective)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.expires)
+                </td>
             </tr>
         }
     </tbody>
