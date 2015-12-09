@@ -8,11 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
+using PagedList;
 
 namespace MvcLabWeb.Controllers
 {
     public class TCDCTravelAlertController : Controller
     {
+        private int pageSize = 5;
         // GET: TCDCTravelAlert
         //public async Task<ActionResult> Index()
         //{
@@ -50,7 +52,7 @@ namespace MvcLabWeb.Controllers
 
             ObjectCache cacheItem = MemoryCache.Default;
             cacheItem.Add(cacheName, collection, policy);
-
+            collection = collection.OrderBy(x => x.headline); //
             return collection;
         }
 
@@ -80,19 +82,37 @@ namespace MvcLabWeb.Controllers
             return securityLevelList;
         }
 
-        public async Task<ActionResult> Index(string securityLevels)
+        //public async Task<ActionResult> Index(string securityLevels)
+        //{
+        //    ViewBag.SecurityLevels = await this.SecurityLevelSelectList(securityLevels);
+        //    ViewBag.SelectedSecurityLevel = securityLevels;
+
+        //    var source = await this.GetTravelAlertData();
+        //    source = source.AsQueryable();
+
+        //    if (!string.IsNullOrWhiteSpace(securityLevels))
+        //    {
+        //        source = source.Where(x => x.severity_level == securityLevels);
+        //    }
+        //    return View(source.OrderBy(x => x.severity_level).ToList());
+        //}
+
+        public async Task<ActionResult> Index(string securityLevels, int page = 1)
         {
             ViewBag.SecurityLevels = await this.SecurityLevelSelectList(securityLevels);
             ViewBag.SelectedSecurityLevel = securityLevels;
-
+            int currentPage = page < 1 ? 1 : page;
             var source = await this.GetTravelAlertData();
+
             source = source.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(securityLevels))
             {
                 source = source.Where(x => x.severity_level == securityLevels);
             }
-            return View(source.OrderBy(x => x.severity_level).ToList());
+            return View(source.OrderBy(x => x.severity_level).ToPagedList(currentPage, pageSize));
+        
+        
         }
     }
 }

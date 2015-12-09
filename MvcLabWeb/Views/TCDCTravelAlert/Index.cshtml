@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MvcLabWeb.Models.TravelAlert>
+﻿@model IPagedList<MvcLabWeb.Models.TravelAlert>
+@using PagedList;
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
 }
@@ -22,42 +24,43 @@
         </form>
     </div>
 
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.sent)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().sent)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.effective)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().effective)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.expires)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().expires)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.headline)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().headline)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.description)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.instruction)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().instruction)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.web)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().web)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.alert_disease)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().alert_disease)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.areaDesc)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().areaDesc)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.areaDesc_EN)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().areaDesc_EN)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.circle)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().circle)
             </th>
 
         </tr>
